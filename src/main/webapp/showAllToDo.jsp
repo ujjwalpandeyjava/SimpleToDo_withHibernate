@@ -22,7 +22,7 @@
 			class="d-flex flex-row bd-highlight mb-3 flex-wrap justify-content-center mx-2 p-4 add-shadow w-100">
 			<%
 			Session s = DBConnection.getFactory().openSession();
-			Query q = s.createQuery("From ToDoNote order by addedDate desc");
+			Query<ToDoNote> q = s.createQuery("From ToDoNote order by addedDate desc");
 			List<ToDoNote> l = q.list();
 			if (l.isEmpty()) {
 			%>

@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.util.Date;
 
@@ -39,6 +38,7 @@ public class UpdateToDoServlet extends HttpServlet {
 			updateIt.setAddedDate(new Date());
 			tr.commit();
 			sess.close();
+			System.out.println(todo);
 			response.sendRedirect("showAllToDo.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();

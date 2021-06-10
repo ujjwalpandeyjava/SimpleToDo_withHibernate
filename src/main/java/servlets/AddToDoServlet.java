@@ -19,8 +19,8 @@ public class AddToDoServlet extends HttpServlet {
 
 	public AddToDoServlet() {
 		super();
-
 	}
+	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -38,14 +38,13 @@ public class AddToDoServlet extends HttpServlet {
 			// To print data on console.
 			// System.out.println(todo);
 			// To print data on web page.
-//			response.setContentType("text/html");
+			// response.setContentType("text/html");
 			PrintWriter pr = response.getWriter();
 			pr.println("<h3>Data added successfully!!</h3>");
-//			wait(2000);
+			// wait(2000);
 			response.sendRedirect("showAllToDo.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 }
