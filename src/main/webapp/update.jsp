@@ -7,11 +7,11 @@
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="common/style.css">
-<title>Update | To Do Hibernate</title>
-</head>
+	<head>
+		<meta charset="ISO-8859-1">
+		<link rel="stylesheet" type="text/css" href="common/style.css">
+		<title>Update | To Do Hibernate</title>
+	</head>
 <body>
 	<%@include file="common/navbar.jsp"%>
 	<%
