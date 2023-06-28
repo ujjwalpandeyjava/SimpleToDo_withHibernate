@@ -28,6 +28,12 @@
 		<description></description>
 		<servlet-class>servlets.UpdateToDoServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ToDoWithImage</servlet-name>
+		<display-name>ToDoWithImage</display-name>
+		<description></description>
+		<servlet-class>servlets.ToDoWithImage</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>AddToDoServlet</servlet-name>
 		<url-pattern>/AddToDoServlet</url-pattern>
@@ -43,5 +49,9 @@
 	<servlet-mapping>
 		<servlet-name>UpdateToDoServlet</servlet-name>
 		<url-pattern>/UpdateToDoServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ToDoWithImage</servlet-name>
+		<url-pattern>/ToDoWithImage</url-pattern>
 	</servlet-mapping>
 </web-app>

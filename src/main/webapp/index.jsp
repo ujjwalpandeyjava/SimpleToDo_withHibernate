@@ -15,7 +15,6 @@
 		<br> <a href="addToDo.jsp" class="btn btn-primary">Add new
 			note</a>
 	</div>
-
 	<%@include file="common/footer.jsp"%>
 </body>
 </html>
