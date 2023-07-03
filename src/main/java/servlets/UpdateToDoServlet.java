@@ -4,17 +4,16 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Date;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import connection.DBConnection;
 import entities.ToDoNote;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import utlity.Utlity;
 
@@ -33,6 +32,7 @@ public class UpdateToDoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			BigInteger id = BigInteger.valueOf(Integer.parseInt(request.getParameter("id").trim()));
+//			Integer id = Integer.parseInt(request.getParameter("id").trim());
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			String userIDString = request.getParameter("userId");
@@ -42,19 +42,20 @@ public class UpdateToDoServlet extends HttpServlet {
 			String directoryPath = Utlity.createSaveFileAndDirectory("toDoWithImage", userIDString, inputFilePart,
 					isFileAvailableSoSave, false);
 			System.out.println("directoryPath" + directoryPath);
-			
-			ToDoNote todo = new ToDoNote(title, content, userIDString, directoryPath, new Date());
 
 			Session sess = DBConnection.getFactory().openSession();
 			Transaction tr = sess.beginTransaction();
 
 			ToDoNote updateIt = sess.get(ToDoNote.class, id);
+			System.out.println(updateIt.toString()+ "\n");
 			updateIt.setTitle(title);
 			updateIt.setContent(content);
+			if (directoryPath != null)
+				updateIt.setFileUrlResource(directoryPath);
 			updateIt.setAddedDate(new Date());
+			System.out.println(updateIt);
 			tr.commit();
 			sess.close();
-			System.out.println(todo);
 			response.sendRedirect("showAllToDo.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -33,7 +33,6 @@
 				<%
 				} else {
 				for (ToDoNote td : l) {
-					System.out.println(td.toString() +"\n\n\n");
 				%>
 				<div class="col-12 col-md-6 col-lg-4 p-3 text-center mb-3">
 					<div class="text-end px-3"><%=td.getAddedDate()%></div>
@@ -44,7 +43,7 @@
 					if(td.getFileUrlResource() != null) {
 					%>
 					<br>
-					<img height="150px" width="180px" alt="uploaded image" src=<%=td.getFileUrlResource() %>>
+					<img height="140px" width="200px" alt="uploaded image" src=<%=td.getFileUrlResource() %>>
 					<%	
 					}
 					%>

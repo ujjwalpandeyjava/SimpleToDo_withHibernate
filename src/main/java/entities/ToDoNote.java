@@ -26,6 +26,17 @@ public class ToDoNote {
 		super();
 	}
 
+	public ToDoNote(BigInteger id, String title, String content, String userIDString, String directoryPath,
+			Date addedDate) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.belogToUser = userIDString;
+		this.fileUrlResource = directoryPath;
+		this.addedDate = addedDate;
+	}
+
 	public ToDoNote(String title, String content, String userIDString, String directoryPath, Date addedDate) {
 		super();
 		this.title = title;
@@ -86,10 +97,7 @@ public class ToDoNote {
 	@Override
 	public String toString() {
 		return "ToDoNote [id:" + id + ", title:" + title + ", content:" + content + ", addedDate:" + addedDate
-				+ ", fileUrlResource:" + fileUrlResource + ", belogToUser:" + belogToUser + ", getId():" + getId()
-				+ ", getTitle():" + getTitle() + ", getContent():" + getContent() + ", getAddedDate():" + getAddedDate()
-				+ ", getFileUrlResource():" + getFileUrlResource() + ", getBelogToUser():" + getBelogToUser()
-				+ ", getClass():" + getClass() + ", hashCode():" + hashCode() + "]";
+				+ ", fileUrlResource:" + fileUrlResource + ", belogToUser:" + belogToUser + "]";
 	}
 
 }

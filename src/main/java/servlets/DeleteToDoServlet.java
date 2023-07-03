@@ -3,16 +3,15 @@ package servlets;
 import java.io.IOException;
 import java.math.BigInteger;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import connection.DBConnection;
 import entities.ToDoNote;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class DeleteToDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

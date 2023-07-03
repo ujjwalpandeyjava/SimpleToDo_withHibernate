@@ -20,12 +20,8 @@ public class Utlity {
 		try {
 			Path relativePath = Paths.get(LocalPaths.UPLOAD_PATH.getValue()); // UPLOAD_PATH
 			realPath = relativePath.toRealPath(); // with "\"
-//			System.out.println(realPath);
-			String restPath = (File.separator + "uploadedFiles" + File.separator + filePurpose + File.separator
-					+ userId).replace(" ", "");
-//			System.out.println(restPath);
+			String restPath = ("/uploadedFiles/" + filePurpose + "/" + userId).replace(" ", "");
 			File fileDirectoryPath = new File(realPath + restPath);
-//			System.out.println(fileDirectoryPath);
 
 			if (fileDirectoryPath.exists()) {
 //				System.out.println("Folder exists");
