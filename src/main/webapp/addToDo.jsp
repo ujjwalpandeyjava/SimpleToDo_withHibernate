@@ -11,18 +11,20 @@
 	<%@include file="common/navbar.jsp"%>
 	<div class="main-content">
 		<h2>Add New To Do in list</h2>
-		<form method="post" action="AddToDoServlet">
+		<form method="post" action="AddToDoServlet" enctype="multipart/form-data">
+		<input type="hidden" value="userId01" name="userId">
 			<div class="form-group">
-				<label for="title">Title</label>
-				 <input type="text" class="form-control" name="title"
-					placeholder="Enter title" required="required">
+				<label for="title">Title</label> <input type="text" class="form-control" name="title" placeholder="Enter title" required="required">
 			</div>
 			<div class="form-group">
 				<label for="contnet">Another label</label>
-					<textarea class="form-control" name="content" cols="8" required="required"></textarea>
+				<textarea class="form-control" name="content" cols="8" required="required"></textarea>
 			</div>
-			    <input type="submit" class="btn btn-primary" value="Add"/>
-			
+			<div>
+				<label for="fileToUpload">File: </label>
+				<input type="file" name="fileToUpload" placeholder="Upload Your File" />
+			</div>
+			<input type="submit" class="btn btn-primary" value="Add" />
 		</form>
 	</div>
 

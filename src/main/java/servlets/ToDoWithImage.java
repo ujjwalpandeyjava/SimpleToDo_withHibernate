@@ -1,11 +1,6 @@
 package servlets;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,8 +12,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
+import utlity.Utlity;
 
-@MultipartConfig(maxFileSize = 16177215) // upload file's size up to 16MB
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
+		maxFileSize = 1024 * 1024 * 10, // 10 MB
+		maxRequestSize = 1024 * 1024 * 100 // 100 MB
+)
 public class ToDoWithImage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,36 +28,23 @@ public class ToDoWithImage extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-
-		String userName = request.getParameter("loggedInUserName");
+		String userIDString = request.getParameter("loggedInUserName");
 		String titleText = request.getParameter("titleText");
 		Part inputFilePart = request.getPart("photo");
 
-		String uploadingFile = "";
-		String directoryPath = "/uploadedFiles/tableName/" + userName; // Dynamic saving directory
-		String originalFileName = getFileName(inputFilePart);
-		checkAndMakeTheDirectory(new File(directoryPath));
+		Boolean isFileAvailableSoSave = inputFilePart.getSize() > 0;
+
+		String directoryPath = Utlity.createSaveFileAndDirectory("toDoWithImage", userIDString, inputFilePart, isFileAvailableSoSave, false);
+		System.out.println("directoryPath" + directoryPath);
 
 		try {
-			OutputStream out = null;
-			InputStream filecontent = null;
-			int read = 0;
-
-			out = new FileOutputStream(new File(directoryPath + File.separator + originalFileName));
-			filecontent = inputFilePart.getInputStream();
-			final byte[] readFile = new byte[1024]; // 1MB buffer
-			while ((read = filecontent.read(readFile)) != -1) {
-				out.write(readFile, 0, read);
-				uploadingFile = directoryPath + "/" + originalFileName;
-			}
-
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/todohibernate", "root",
 					"Goldenstar@123");
 			String query = "INSERT INTO name(name, photourl) value(?,?)";
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, titleText);
-			ps.setString(2, uploadingFile);
+			ps.setString(2, (isFileAvailableSoSave) ? directoryPath : null);
 			int i = ps.executeUpdate();
 			System.out.println((i == 1) ? "Saved" : "Not saved");
 
@@ -70,26 +56,5 @@ public class ToDoWithImage extends HttpServlet {
 			e.printStackTrace();
 		}
 		response.sendRedirect("imageChange.jsp");
-	}
-
-	private String getFileName(final Part part) {
-		final String partHeader = part.getHeader("content-disposition");
-		System.out.println("partHeader: " + partHeader);
-		for (String content : partHeader.split(";")) {
-			if (content.trim().startsWith("filename")) {
-				return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
-			}
-		}
-		return null;
-	}
-
-	private File checkAndMakeTheDirectory(File theDirectory) {
-		System.out.println("Creating this: " + theDirectory.getAbsolutePath());
-		if (theDirectory.exists())
-			System.out.println("Folder already exists");
-		if (theDirectory.mkdirs())
-			System.out.println("Folder created");
-		System.out.println("The Directory: " + theDirectory);
-		return theDirectory;
 	}
 }
