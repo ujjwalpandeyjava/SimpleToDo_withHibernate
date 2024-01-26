@@ -44,7 +44,7 @@ public class AddToDoServlet extends HttpServlet {
 			// Adding in database with the help of hibernate.
 			Session sess = DBConnection.getFactory().openSession();
 			Transaction tr = sess.beginTransaction();
-			sess.save(todo);
+			sess.persist(todo);
 			tr.commit();
 			sess.close();
 			HttpSession session = request.getSession();

@@ -38,7 +38,7 @@ public class UpdateToDoServlet extends HttpServlet {
 			String userIDString = request.getParameter("userId");
 			Part inputFilePart = (Part) request.getPart("fileToUpload");
 
-			Boolean isFileAvailableSoSave = inputFilePart.getSize() > 0;
+			Boolean isFileAvailableSoSave = (inputFilePart != null && inputFilePart.getSize() > 0) ? true : false;
 			String directoryPath = Utlity.createSaveFileAndDirectory("toDoWithImage", userIDString, inputFilePart,
 					isFileAvailableSoSave, false);
 			System.out.println("directoryPath" + directoryPath);
@@ -47,7 +47,7 @@ public class UpdateToDoServlet extends HttpServlet {
 			Transaction tr = sess.beginTransaction();
 
 			ToDoNote updateIt = sess.get(ToDoNote.class, id);
-			System.out.println(updateIt.toString()+ "\n");
+			System.out.println(updateIt.toString() + "\n");
 			updateIt.setTitle(title);
 			updateIt.setContent(content);
 			if (directoryPath != null)

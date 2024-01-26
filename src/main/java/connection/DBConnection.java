@@ -3,6 +3,9 @@ package connection;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+//import org.hibernate.SessionFactory;
+//import org.hibernate.cfg.Configuration;
+
 public class DBConnection {
 
 	public DBConnection() {
@@ -11,9 +14,8 @@ public class DBConnection {
 	// and calling this method like an function
 	public static SessionFactory factory;
 	public static SessionFactory getFactory() {
-		if (factory == null) {
-			factory = new Configuration().configure().buildSessionFactory();
-		}
+		if (factory == null) 
+			factory = new Configuration().configure().buildSessionFactory();	
 		return factory;
 	}
 	public void closeFactory() {

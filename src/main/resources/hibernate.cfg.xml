@@ -1,23 +1,20 @@
 <?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE hibernate-configuration PUBLIC
-"-//Hibernate/Hibernate Configuration DTD//EN"
-"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
-
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-	<property name = "connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-    <property name = "connection.url">jdbc:mysql://localhost:3306/todohibernate</property><!-- Table Name (Create yourself) -->
-    <property name = "connection.username">root</property>
-    <property name = "connection.password">Goldenstar@123</property>
-	<property name = "dialect">org.hibernate.dialect.MySQL5Dialect</property>	
-    <property name = "hbm2ddl.auto">update</property>
-<!--<property name = "show_sql">true</property> -->
-    <property name = "format_sql">true</property>
-    <mapping class = "entities.ToDoNote"/><!-- File where annotation is performed. -->
-<!--<mapping resource = "hibernate.student"/>-->
-<!-- !IMPORTANT:-   resource attribute is used in mapping option when using hibernate.hbm.xml file form mapping.
-    				class attribute is used in mapping option when using annotation for mapping. -->
-    
-</session-factory>
-
+		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/todohibernate</property><!-- 
+			Table Name (Create yourself) -->
+		<property name="connection.username">root</property>
+		<property name="connection.password">Goldenstar@123</property>
+		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<property name="hbm2ddl.auto">update</property>
+		<!-- <property name="show_sql">true</property>
+			 <property name="format_sql">true</property> 
+			 <mapping class="entities.ToDoNote" /> -->
+		<!-- File where annotation is performed. -->
+		<!-- <mapping resource = "hibernate.student"/> -->
+		<!-- !IMPORTANT:- resource: hibernate.hbm.xml mapping class: annotation 
+			mapping -->
+	</session-factory>
 </hibernate-configuration>
