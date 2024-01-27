@@ -1,1 +1,8 @@
 /target
+target/
+target/classes/hibernate.cfg.xml
+target/classes/connection/DBConnection.class
+target/classes/entities/ToDoNote.class
+target/classes/servlets/AddToDoServlet.class
+target/classes/servlets/DeleteToDoServlet.class
+target/classes/servlets/UpdateToDoServlet.class
