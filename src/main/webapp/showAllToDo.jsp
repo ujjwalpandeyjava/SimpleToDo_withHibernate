@@ -20,13 +20,13 @@
 			class="d-flex flex-row bd-highlight mb-3 flex-wrap justify-content-center mx-2 p-4 add-shadow w-100">
 			<%
 			Session s = DBConnection.getFactory().openSession();
-			List<ToDoNote> l = s.createQuery("SELECT tdn FROM ToDoNote tdn", ToDoNote.class).getResultList();
-			if (l.isEmpty()) {
+			List<ToDoNote> l = null;
+			l = s.createQuery("SELECT a FROM todonote a", ToDoNote.class).getResultList();
+			if (l == null || l.isEmpty()) {
 			%>
 			<div
 				class="col-12 justify-content-center mx-auto p-4 add-shadow  text-center">
-				<h3 class="mx-auto justify-content-center">You don't have any
-					to do add new here</h3>
+				<h3 class="mx-auto justify-content-center">You don't have any to do add new here</h3>
 				<a href="addToDo.jsp" class="btn btn-primary">Add new note</a>
 			</div>
 			<%

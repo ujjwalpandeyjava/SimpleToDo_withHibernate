@@ -2,16 +2,21 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost:3306/todohibernate</property><!-- 
-			Table Name (Create yourself) -->
-		<property name="connection.username">root</property>
-		<property name="connection.password">Goldenstar@123</property>
-		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/todohibernate</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">Goldenstar@123</property>
+		<!--   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>  
+		<property name="hibernate.transaction.jta.platform">org.hibernate.service.jta.platform.internal.WeblogicJtaPlatform</property>
+		<property name="hibernate.transaction.jta.platform">org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator</property>
+		<property name="hibernate.transaction.jta.platform">org.hibernate.engine.transaction.jta.platform.internal.WebSphereExtendedJtaPlatform</property>
+		<property name="hibernate.transaction.jta.platform">JBossTS</property>
+		-->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<mapping class="entities.ToDoNote" /> 
 		<!-- <property name="show_sql">true</property>
 			 <property name="format_sql">true</property> 
-			 <mapping class="entities.ToDoNote" /> -->
+			 -->
 		<!-- File where annotation is performed. -->
 		<!-- <mapping resource = "hibernate.student"/> -->
 		<!-- !IMPORTANT:- resource: hibernate.hbm.xml mapping class: annotation 

@@ -15,3 +15,8 @@ Tech used:
 Cons
 - no Register/login, this is to create todo with hibernate
 - A simple project
+
+\
+_**Note:**_\
+To see image the server must be working.\
+in this case: the images are on server are 8080 and the development project is on 8880.

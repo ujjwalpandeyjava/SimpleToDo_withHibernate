@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 import enums.LocalPaths;
 import jakarta.servlet.http.Part;
 
-public class Utlity {
+public class MyUtlity {
 	public static String createSaveFileAndDirectory(String filePurpose, String userId, Part inputFilePart,
 			Boolean saveFile, Boolean returnDirectory) {
 		Path realPath = null;
@@ -24,9 +24,9 @@ public class Utlity {
 			File fileDirectoryPath = new File(realPath + restPath);
 
 			if (fileDirectoryPath.exists()) {
-//				System.out.println("Folder exists");
+				System.out.println("Folder exists");
 			} else if (fileDirectoryPath.mkdirs()) {
-//				System.out.println("Folder created");
+				System.out.println("Folder created");
 			}
 
 			if (saveFile == true) {

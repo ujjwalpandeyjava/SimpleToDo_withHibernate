@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
-import utlity.Utlity;
+import utlity.MyUtlity;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
 		maxFileSize = 1024 * 1024 * 10, // 10 MB
@@ -39,7 +39,7 @@ public class UpdateToDoServlet extends HttpServlet {
 			Part inputFilePart = (Part) request.getPart("fileToUpload");
 
 			Boolean isFileAvailableSoSave = (inputFilePart != null && inputFilePart.getSize() > 0) ? true : false;
-			String directoryPath = Utlity.createSaveFileAndDirectory("toDoWithImage", userIDString, inputFilePart,
+			String directoryPath = MyUtlity.createSaveFileAndDirectory("toDoWithImage", userIDString, inputFilePart,
 					isFileAvailableSoSave, false);
 			System.out.println("directoryPath" + directoryPath);
 

@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
-import utlity.Utlity;
+import utlity.MyUtlity;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
 		maxFileSize = 1024 * 1024 * 10, // 10 MB
@@ -37,7 +37,7 @@ public class AddToDoServlet extends HttpServlet {
 			Part inputFilePart = request.getPart("fileToUpload");
 
 			Boolean isFileAvailableSoSave = inputFilePart.getSize() > 0;
-			String directoryPath = Utlity.createSaveFileAndDirectory("toDoWithImage", userIDString, inputFilePart,
+			String directoryPath = MyUtlity.createSaveFileAndDirectory("toDoWithImage", userIDString, inputFilePart,
 					isFileAvailableSoSave, false);
 			ToDoNote todo = new ToDoNote(title, content, userIDString, directoryPath, new Date());
 

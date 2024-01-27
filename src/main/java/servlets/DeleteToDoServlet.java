@@ -24,7 +24,7 @@ public class DeleteToDoServlet extends HttpServlet {
 			Session s = DBConnection.getFactory().openSession();
 			Transaction t = s.beginTransaction();
 			ToDoNote deleteTD = (ToDoNote) s.get(ToDoNote.class, id);
-			s.delete(deleteTD);
+			s.remove(deleteTD);
 			t.commit();
 			s.close();
 			response.sendRedirect("showAllToDo.jsp");
